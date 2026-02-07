@@ -4,17 +4,17 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import Head from "next/head"; // <-- import
+import AuthSessionProvider from "@/components/providers/session-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ThinkxLife",
+  title: "ThinkLife",
   description: "",
   icons: {
-    icon: "/ThinkxLife.png", // main favicon
-    shortcut: "/ThinkxLife.png", // <link rel="shortcut icon">
-    apple: "/ThinkxLife.png", // for iOS homescreen
+    icon: "/tr_logo.png", // main favicon
+    shortcut: "/tr_logo.png", // <link rel="shortcut icon">
+    apple: "/tr_logo.png", // for iOS homescreen
   },
   generator: "v0.dev",
 };
@@ -26,15 +26,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="/ThinkxLife.jpeg" />
-      </Head>
+      {/* Favicon handled via metadata.icons */}
       <body
         className={`${inter.className} bg-white text-gray-800 min-h-screen flex flex-col`}
       >
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <AuthSessionProvider>
+          <Navbar />
+          <main className="flex-grow pt-10">{children}</main>
+          <Footer />
+        </AuthSessionProvider>
       </body>
     </html>
   );

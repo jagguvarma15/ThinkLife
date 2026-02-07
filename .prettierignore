@@ -1,5 +1,0 @@
-# .prettierignore
-node_modules
-.next
-.env*
-frontend/public/**/*.svg
