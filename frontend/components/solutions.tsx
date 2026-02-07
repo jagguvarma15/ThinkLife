@@ -1,5 +1,5 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Solutions() {
   return (
@@ -10,7 +10,8 @@ export default function Solutions() {
             AI Solutions for Every Industry
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Our AI models are designed to solve complex problems across various industries.
+            Our AI models are designed to solve complex problems across various
+            industries.
           </p>
         </div>
 
@@ -26,10 +27,14 @@ export default function Solutions() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h3 className="text-2xl font-bold mb-4 text-white">Healthcare AI</h3>
+            <h3 className="text-2xl font-bold mb-4 text-white">
+              Healthcare AI
+            </h3>
             <p className="text-gray-300 mb-6">
-              Our healthcare AI solutions help medical professionals diagnose diseases earlier, develop personalized
-              treatment plans, and improve patient outcomes through predictive analytics and medical image analysis.
+              Our healthcare AI solutions help medical professionals diagnose
+              diseases earlier, develop personalized treatment plans, and
+              improve patient outcomes through predictive analytics and medical
+              image analysis.
             </p>
             <Button className="w-fit bg-orange-900/30 hover:bg-orange-900/50 text-orange-300 border border-orange-700/50 rounded-md">
               Learn More
@@ -37,10 +42,14 @@ export default function Solutions() {
           </div>
 
           <div className="flex flex-col justify-center order-2 md:order-1">
-            <h3 className="text-2xl font-bold mb-4 text-white">Financial Intelligence</h3>
+            <h3 className="text-2xl font-bold mb-4 text-white">
+              Financial Intelligence
+            </h3>
             <p className="text-gray-300 mb-6">
-              Transform your financial operations with our AI-powered solutions that detect fraud, optimize trading
-              strategies, automate risk assessment, and provide personalized financial advice to customers.
+              Transform your financial operations with our AI-powered solutions
+              that detect fraud, optimize trading strategies, automate risk
+              assessment, and provide personalized financial advice to
+              customers.
             </p>
             <Button className="w-fit bg-orange-900/30 hover:bg-orange-900/50 text-orange-300 border border-orange-700/50 rounded-md">
               Learn More
@@ -59,5 +68,5 @@ export default function Solutions() {
         </div>
       </div>
     </section>
-  )
+  );
 }

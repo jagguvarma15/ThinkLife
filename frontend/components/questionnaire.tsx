@@ -1,105 +1,133 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type QuestionnaireData = {
-  mentalHealth: string
-  goals: string
-  challenges: string
-  supportNeeded: string
-}
+  mentalHealth: string;
+  goals: string;
+  challenges: string;
+  supportNeeded: string;
+};
 
 type QuestionnaireProps = {
-  onSubmit: (data: QuestionnaireData) => void
-}
+  onSubmit: (data: QuestionnaireData) => void;
+};
 
 export default function Questionnaire({ onSubmit }: QuestionnaireProps) {
-  const [mentalHealth, setMentalHealth] = useState("")
-  const [goals, setGoals] = useState("")
-  const [challenges, setChallenges] = useState("")
-  const [supportNeeded, setSupportNeeded] = useState("")
-  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [mentalHealth, setMentalHealth] = useState("");
+  const [goals, setGoals] = useState("");
+  const [challenges, setChallenges] = useState("");
+  const [supportNeeded, setSupportNeeded] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Validate inputs
-    const newErrors: { [key: string]: string } = {}
+    const newErrors: { [key: string]: string } = {};
 
     if (!mentalHealth) {
-      newErrors.mentalHealth = "Please select an option"
+      newErrors.mentalHealth = "Please select an option";
     }
 
     if (!goals.trim()) {
-      newErrors.goals = "This field is required"
+      newErrors.goals = "This field is required";
     }
 
     if (!challenges.trim()) {
-      newErrors.challenges = "This field is required"
+      newErrors.challenges = "This field is required";
     }
 
     if (!supportNeeded.trim()) {
-      newErrors.supportNeeded = "This field is required"
+      newErrors.supportNeeded = "This field is required";
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      setErrors(newErrors);
+      return;
     }
 
     // Clear errors and submit
-    setErrors({})
+    setErrors({});
     onSubmit({
       mentalHealth,
       goals,
       challenges,
       supportNeeded,
-    })
-  }
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-4">
-        <Label className="text-white text-lg">How would you describe your current mental wellbeing?</Label>
-        <RadioGroup value={mentalHealth} onValueChange={setMentalHealth} className="space-y-2">
+        <Label className="text-white text-lg">
+          How would you describe your current mental wellbeing?
+        </Label>
+        <RadioGroup
+          value={mentalHealth}
+          onValueChange={setMentalHealth}
+          className="space-y-2"
+        >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="excellent" id="excellent" className="border-purple-400" />
+            <RadioGroupItem
+              value="excellent"
+              id="excellent"
+              className="border-purple-400"
+            />
             <Label htmlFor="excellent" className="text-white">
               Excellent - I'm thriving
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="good" id="good" className="border-purple-400" />
+            <RadioGroupItem
+              value="good"
+              id="good"
+              className="border-purple-400"
+            />
             <Label htmlFor="good" className="text-white">
               Good - I'm doing well overall
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="okay" id="okay" className="border-purple-400" />
+            <RadioGroupItem
+              value="okay"
+              id="okay"
+              className="border-purple-400"
+            />
             <Label htmlFor="okay" className="text-white">
               Okay - I have good and bad days
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="struggling" id="struggling" className="border-purple-400" />
+            <RadioGroupItem
+              value="struggling"
+              id="struggling"
+              className="border-purple-400"
+            />
             <Label htmlFor="struggling" className="text-white">
               Struggling - I'm having a difficult time
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="crisis" id="crisis" className="border-purple-400" />
+            <RadioGroupItem
+              value="crisis"
+              id="crisis"
+              className="border-purple-400"
+            />
             <Label htmlFor="crisis" className="text-white">
               In crisis - I need immediate support
             </Label>
           </div>
         </RadioGroup>
-        {errors.mentalHealth && <p className="text-red-400 text-sm">{errors.mentalHealth}</p>}
+        {errors.mentalHealth && (
+          <p className="text-red-400 text-sm">{errors.mentalHealth}</p>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -127,7 +155,9 @@ export default function Questionnaire({ onSubmit }: QuestionnaireProps) {
           placeholder="E.g., Work stress, relationship issues, self-doubt..."
           className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 min-h-[100px]"
         />
-        {errors.challenges && <p className="text-red-400 text-sm">{errors.challenges}</p>}
+        {errors.challenges && (
+          <p className="text-red-400 text-sm">{errors.challenges}</p>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -141,7 +171,9 @@ export default function Questionnaire({ onSubmit }: QuestionnaireProps) {
           placeholder="E.g., Daily check-ins, coping strategies, someone to listen..."
           className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 min-h-[100px]"
         />
-        {errors.supportNeeded && <p className="text-red-400 text-sm">{errors.supportNeeded}</p>}
+        {errors.supportNeeded && (
+          <p className="text-red-400 text-sm">{errors.supportNeeded}</p>
+        )}
       </div>
 
       <Button
@@ -151,5 +183,5 @@ export default function Questionnaire({ onSubmit }: QuestionnaireProps) {
         Start Chatting
       </Button>
     </form>
-  )
+  );
 }

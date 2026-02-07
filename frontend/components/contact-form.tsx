@@ -1,83 +1,87 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 type ContactData = {
-  firstName: string
-  lastName: string
-  email: string
-  subject: string
-  message: string
-}
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 type ContactFormProps = {
-  initialEmail?: string
-  initialName?: string
-  onSubmit: (data: ContactData) => void
-}
+  initialEmail?: string;
+  initialName?: string;
+  onSubmit: (data: ContactData) => void;
+};
 
-export default function ContactForm({ initialEmail = "", initialName = "", onSubmit }: ContactFormProps) {
+export default function ContactForm({
+  initialEmail = "",
+  initialName = "",
+  onSubmit,
+}: ContactFormProps) {
   // Split the initial name into first and last name if provided
-  const nameParts = initialName.split(" ")
-  const initialFirstName = nameParts[0] || ""
-  const initialLastName = nameParts.slice(1).join(" ") || ""
+  const nameParts = initialName.split(" ");
+  const initialFirstName = nameParts[0] || "";
+  const initialLastName = nameParts.slice(1).join(" ") || "";
 
-  const [firstName, setFirstName] = useState(initialFirstName)
-  const [lastName, setLastName] = useState(initialLastName)
-  const [email, setEmail] = useState(initialEmail)
-  const [subject, setSubject] = useState("")
-  const [message, setMessage] = useState("")
-  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [firstName, setFirstName] = useState(initialFirstName);
+  const [lastName, setLastName] = useState(initialLastName);
+  const [email, setEmail] = useState(initialEmail);
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Validate inputs
-    const newErrors: { [key: string]: string } = {}
+    const newErrors: { [key: string]: string } = {};
 
     if (!firstName.trim()) {
-      newErrors.firstName = "First name is required"
+      newErrors.firstName = "First name is required";
     }
 
     if (!lastName.trim()) {
-      newErrors.lastName = "Last name is required"
+      newErrors.lastName = "Last name is required";
     }
 
     if (!email.trim()) {
-      newErrors.email = "Email is required"
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Please enter a valid email address"
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!subject.trim()) {
-      newErrors.subject = "Subject is required"
+      newErrors.subject = "Subject is required";
     }
 
     if (!message.trim()) {
-      newErrors.message = "Message is required"
+      newErrors.message = "Message is required";
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      setErrors(newErrors);
+      return;
     }
 
     // Clear errors and submit
-    setErrors({})
+    setErrors({});
     onSubmit({
       firstName,
       lastName,
       email,
       subject,
       message,
-    })
-  }
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -94,7 +98,9 @@ export default function ContactForm({ initialEmail = "", initialName = "", onSub
             placeholder="Enter your first name"
             className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
           />
-          {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+          {errors.firstName && (
+            <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -109,7 +115,9 @@ export default function ContactForm({ initialEmail = "", initialName = "", onSub
             placeholder="Enter your last name"
             className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
           />
-          {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
+          {errors.lastName && (
+            <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+          )}
         </div>
       </div>
 
@@ -125,7 +133,9 @@ export default function ContactForm({ initialEmail = "", initialName = "", onSub
           placeholder="Enter your email address"
           className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
         />
-        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -140,7 +150,9 @@ export default function ContactForm({ initialEmail = "", initialName = "", onSub
           placeholder="Enter the subject of your message"
           className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
         />
-        {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+        {errors.subject && (
+          <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -154,12 +166,17 @@ export default function ContactForm({ initialEmail = "", initialName = "", onSub
           placeholder="Enter your message"
           className="border-gray-300 focus:border-purple-500 focus:ring-purple-500 min-h-[150px]"
         />
-        {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+        {errors.message && (
+          <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+        )}
       </div>
 
-      <Button type="submit" className="w-full bg-purple-700 hover:bg-purple-800 text-white">
+      <Button
+        type="submit"
+        className="w-full bg-purple-700 hover:bg-purple-800 text-white"
+      >
         Submit
       </Button>
     </form>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import Hero from "@/components/hero"
-import About from "@/components/about"
-import Programs from "@/components/programs"
-import CTA from "@/components/cta"
+import Hero from "@/components/hero";
+import About from "@/components/about";
+import Programs from "@/components/programs";
+import CTA from "@/components/cta";
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
       <Programs />
       <CTA />
     </>
-  )
+  );
 }

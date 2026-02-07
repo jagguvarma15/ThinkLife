@@ -1,6 +1,6 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
@@ -14,13 +14,17 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg text-gray-600 mb-8">
-              Think Round, Inc is a non-profit organization dedicated to promoting arts, education, and community
-              engagement. We believe in the power of creativity to connect people and foster understanding.
+              Think Round, Inc is a non-profit organization dedicated to
+              promoting arts, education, and community engagement. We believe in
+              the power of creativity to connect people and foster
+              understanding.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/chatbot">
-                <Button className="bg-purple-700 hover:bg-purple-800 text-white px-8 py-3 rounded-md">Meet Zoe</Button>
+                <Button className="bg-purple-700 hover:bg-purple-800 text-white px-8 py-3 rounded-md">
+                  Meet Zoe
+                </Button>
               </Link>
             </div>
           </div>
@@ -39,5 +43,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

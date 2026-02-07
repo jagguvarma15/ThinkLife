@@ -1,13 +1,16 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export default function About() {
   return (
     <section className="py-20 px-6 md:px-12 lg:px-24 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">About Think Round Inc</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+            About Think Round Inc
+          </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            We are dedicated to creating connections through art, education, and community engagement.
+            We are dedicated to creating connections through art, education, and
+            community engagement.
           </p>
         </div>
 
@@ -31,7 +34,8 @@ export default function About() {
             </div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Arts</h3>
             <p className="text-gray-600">
-              We promote artistic expression and creativity through exhibitions, workshops, and community art projects.
+              We promote artistic expression and creativity through exhibitions,
+              workshops, and community art projects.
             </p>
           </div>
 
@@ -52,9 +56,12 @@ export default function About() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">Education</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              Education
+            </h3>
             <p className="text-gray-600">
-              We develop educational programs that inspire learning, critical thinking, and cultural understanding.
+              We develop educational programs that inspire learning, critical
+              thinking, and cultural understanding.
             </p>
           </div>
 
@@ -75,9 +82,12 @@ export default function About() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">Community</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              Community
+            </h3>
             <p className="text-gray-600">
-              We build connections between diverse communities through collaborative projects and cultural exchange.
+              We build connections between diverse communities through
+              collaborative projects and cultural exchange.
             </p>
           </div>
         </div>
@@ -85,15 +95,21 @@ export default function About() {
         <div className="mt-16 bg-white p-8 rounded-lg shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-800">Our Mission</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                Our Mission
+              </h3>
               <p className="text-gray-600 mb-4">
-                Think Round Inc is dedicated to creating connections between diverse communities through art, education,
-                and cultural exchange. We believe that by fostering creativity and understanding, we can build a more
-                inclusive and compassionate world.
+                Think Round Inc is dedicated to creating connections between
+                diverse communities through art, education, and cultural
+                exchange. We believe that by fostering creativity and
+                understanding, we can build a more inclusive and compassionate
+                world.
               </p>
               <p className="text-gray-600">
-                Our programs and initiatives aim to inspire, educate, and empower individuals of all ages and
-                backgrounds to express themselves and appreciate the rich diversity of human experience.
+                Our programs and initiatives aim to inspire, educate, and
+                empower individuals of all ages and backgrounds to express
+                themselves and appreciate the rich diversity of human
+                experience.
               </p>
             </div>
             <div className="rounded-lg overflow-hidden">
@@ -109,5 +125,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }

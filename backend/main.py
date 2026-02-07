@@ -1,17 +1,20 @@
+import os
+import traceback
+
+from chatbot.chatbot_core import generate_response
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import traceback
-import os
 
-from chatbot.chatbot_core import generate_response
 
 class ChatRequest(BaseModel):
     message: str
     history: list = []  # default to empty if omitted
 
+
 class ChatResponse(BaseModel):
     response: str
+
 
 app = FastAPI()
 app.add_middleware(
@@ -21,13 +24,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def root():
     return {"status": "Zoe backend is up!"}
 
+
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
+
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X, Brain } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, Brain } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header>
@@ -44,11 +44,16 @@ export default function Navbar() {
           </div>
 
           <Link href="/chatbot" className="hidden md:block">
-            <Button className="bg-purple-700 hover:bg-purple-800 text-white rounded-md">Meet Zoe</Button>
+            <Button className="bg-purple-700 hover:bg-purple-800 text-white rounded-md">
+              Meet Zoe
+            </Button>
           </Link>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-700" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button
+            className="md:hidden text-gray-700"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -88,5 +93,5 @@ export default function Navbar() {
         )}
       </nav>
     </header>
-  )
+  );
 }

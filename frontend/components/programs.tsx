@@ -1,6 +1,6 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Programs() {
   const programs = [
@@ -22,15 +22,18 @@ export default function Programs() {
         "Collaborative art projects that bring together diverse communities to create meaningful public art.",
       image: "/community-mural.png",
     },
-  ]
+  ];
 
   return (
     <section className="py-20 px-6 md:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Our Programs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+            Our Programs
+          </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Explore our diverse range of programs designed to inspire creativity, foster learning, and build community.
+            Explore our diverse range of programs designed to inspire
+            creativity, foster learning, and build community.
           </p>
         </div>
 
@@ -48,10 +51,15 @@ export default function Programs() {
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-gray-800">{program.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                  {program.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{program.description}</p>
                 <Link href="#">
-                  <Button variant="link" className="text-purple-700 p-0 hover:text-purple-900">
+                  <Button
+                    variant="link"
+                    className="text-purple-700 p-0 hover:text-purple-900"
+                  >
                     Learn more →
                   </Button>
                 </Link>
@@ -69,5 +77,5 @@ export default function Programs() {
         </div>
       </div>
     </section>
-  )
+  );
 }

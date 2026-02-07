@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 const ACE_QUESTIONS = [
   "Before 18 years old, Did a parent or other adult in the household often swear at you, insult you, put you down, or humiliate you?",
@@ -18,46 +18,50 @@ const ACE_QUESTIONS = [
   "Before 18 years old, Did you live with anyone who was a problem drinker, alcoholic, or who used street drugs?",
   "Before 18 years old, Was a household member depressed, mentally ill, or did they ever attempt suicide?",
   "Before 18 years old, Did a household member go to jail or prison?",
-]
+];
 
-type Answer = "yes" | "no" | "skip" | null
+type Answer = "yes" | "no" | "skip" | null;
 
 type AceQuestionnaireProps = {
-  onComplete: (score: number, answers: Answer[]) => void
-}
+  onComplete: (score: number, answers: Answer[]) => void;
+};
 
-export default function AceQuestionnaire({ onComplete }: AceQuestionnaireProps) {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Answer[]>(Array(ACE_QUESTIONS.length).fill(null))
-  const [currentAnswer, setCurrentAnswer] = useState<Answer>(null)
+export default function AceQuestionnaire({
+  onComplete,
+}: AceQuestionnaireProps) {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<Answer[]>(
+    Array(ACE_QUESTIONS.length).fill(null),
+  );
+  const [currentAnswer, setCurrentAnswer] = useState<Answer>(null);
 
   const handleNext = () => {
-    if (currentAnswer === null) return
+    if (currentAnswer === null) return;
 
-    const newAnswers = [...answers]
-    newAnswers[currentQuestion] = currentAnswer
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = currentAnswer;
 
-    setAnswers(newAnswers)
+    setAnswers(newAnswers);
 
     if (currentQuestion < ACE_QUESTIONS.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-      setCurrentAnswer(null)
+      setCurrentQuestion(currentQuestion + 1);
+      setCurrentAnswer(null);
     } else {
       // Calculate score
-      const score = calculateAceScore(newAnswers)
-      onComplete(score, newAnswers)
+      const score = calculateAceScore(newAnswers);
+      onComplete(score, newAnswers);
     }
-  }
+  };
 
   const calculateAceScore = (answers: Answer[]): number => {
     return answers.reduce((score, answer) => {
-      if (answer === "yes") return score + 1
-      if (answer === "skip") return score + 0.25
-      return score
-    }, 0)
-  }
+      if (answer === "yes") return score + 1;
+      if (answer === "skip") return score + 0.25;
+      return score;
+    }, 0);
+  };
 
-  const progress = ((currentQuestion + 1) / ACE_QUESTIONS.length) * 100
+  const progress = ((currentQuestion + 1) / ACE_QUESTIONS.length) * 100;
 
   return (
     <div className="space-y-6">
@@ -73,7 +77,9 @@ export default function AceQuestionnaire({ onComplete }: AceQuestionnaireProps) 
 
       <Card>
         <CardContent className="pt-6">
-          <h3 className="text-lg font-medium mb-4">{ACE_QUESTIONS[currentQuestion]}</h3>
+          <h3 className="text-lg font-medium mb-4">
+            {ACE_QUESTIONS[currentQuestion]}
+          </h3>
 
           <RadioGroup
             value={currentAnswer || ""}
@@ -101,8 +107,10 @@ export default function AceQuestionnaire({ onComplete }: AceQuestionnaireProps) 
         disabled={currentAnswer === null}
         className="w-full bg-purple-700 hover:bg-purple-800 text-white"
       >
-        {currentQuestion < ACE_QUESTIONS.length - 1 ? "Next Question" : "Complete Questionnaire"}
+        {currentQuestion < ACE_QUESTIONS.length - 1
+          ? "Next Question"
+          : "Complete Questionnaire"}
       </Button>
     </div>
-  )
+  );
 }

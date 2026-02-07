@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-import os
 import json
+import os
+
 import pandas as pd
 from dotenv import load_dotenv
+from langchain.schema import Document
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-from langchain.schema import Document
 
 # Load environment variables
 load_dotenv()
@@ -32,7 +33,10 @@ def load_context_txt(path: str, chunk_size: int = CHUNK_SIZE) -> list[Document]:
     with open(path, "r", encoding="utf-8") as f:
         text = f.read()
     return [
-        Document(page_content=text[i:i+chunk_size], metadata={"source": os.path.basename(path)})
+        Document(
+            page_content=text[i : i + chunk_size],
+            metadata={"source": os.path.basename(path)},
+        )
         for i in range(0, len(text), chunk_size)
     ]
 
@@ -50,19 +54,18 @@ def load_knowledge_json(path: str, chunk_size: int = CHUNK_SIZE) -> list[Documen
         answer = item.get("answer", "")
         category = item.get("category", "general")
         for i in range(0, len(answer), chunk_size):
-            chunk = answer[i:i+chunk_size]
+            chunk = answer[i : i + chunk_size]
             docs.append(
                 Document(
                     page_content=f"{question}\n{chunk}",
-                    metadata={"source": "knowledge_base", "category": category}
+                    metadata={"source": "knowledge_base", "category": category},
                 )
             )
     return docs
 
 
 def load_empathy_docs(
-    path: str = EMPATHY_CSV_PATH,
-    max_examples: int = MAX_EMPATHY_EXAMPLES
+    path: str = EMPATHY_CSV_PATH, max_examples: int = MAX_EMPATHY_EXAMPLES
 ) -> list[Document]:
     """
     Load empathetic dialogues CSV and format into documents.
@@ -71,10 +74,10 @@ def load_empathy_docs(
     docs: list[Document] = []
 
     for _, row in df.head(max_examples).iterrows():
-        situation = row.get('Situation', '')
-        emotion = row.get('emotion', '')
-        dialogue = row.get('empathetic_dialogues', '')
-        response = row.get('labels', '')
+        situation = row.get("Situation", "")
+        emotion = row.get("emotion", "")
+        dialogue = row.get("empathetic_dialogues", "")
+        response = row.get("labels", "")
         text = (
             f"Emotion: {emotion}\n"
             f"Situation: {situation}\n"
@@ -82,7 +85,13 @@ def load_empathy_docs(
             f"Agent Response: {response.strip()}"
         )
         docs.append(
-            Document(page_content=text, metadata={"source": "empathetic_dialogues", "emotion": emotion})
+            Document(
+                page_content=text,
+                metadata={
+                    "source": "empathetic_dialogues",
+                    "emotion": emotion,
+                },
+            )
         )
     return docs
 
@@ -93,9 +102,13 @@ def build_chroma_index():
     """
     # Remove old DB directory to avoid schema mismatch
     if os.path.exists(CHROMA_DB_DIR):
-        print(f"Removing existing Chroma DB at '{CHROMA_DB_DIR}' to avoid schema issues...")
+        print(
+            f"Removing existing Chroma DB at '{CHROMA_DB_DIR}'"
+            "to avoid schema issues..."
+        )
         try:
             import shutil
+
             shutil.rmtree(CHROMA_DB_DIR)
         except Exception as e:
             print(f"Warning: could not remove old DB: {e}")
@@ -117,12 +130,11 @@ def build_chroma_index():
 
     # Create and save Chroma vectorstore
     vectorstore = Chroma.from_documents(
-        documents=all_docs,
-        embedding=embeddings,
-        persist_directory=CHROMA_DB_DIR
+        documents=all_docs, embedding=embeddings, persist_directory=CHROMA_DB_DIR
     )
 
-    print(f"Chroma index built and saved to '{CHROMA_DB_DIR}'.")
+    print(f"Chroma index built {vectorstore}and saved to '{CHROMA_DB_DIR}'.")
+
 
 if __name__ == "__main__":
     build_chroma_index()
