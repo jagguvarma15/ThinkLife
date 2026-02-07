@@ -1,11 +1,8 @@
-# Sync code from Think-Round-Inc/ThinkLife. Keeps this repo's own history.
-# Manual run: keeps this repo's README, SECURITY, LICENSE, CODE_OF_CONDUCT.
-# Schedule run: full code sync (parent's versions of those files too).
+# Sync code from Think-Round-Inc/ThinkLife. Manual run only.
+# Keeps this repo's README, SECURITY, LICENSE, CODE_OF_CONDUCT; copies parent code only.
 name: Sync with upstream
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
