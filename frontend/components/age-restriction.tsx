@@ -17,7 +17,7 @@ export default function AgeRestriction() {
           Session ended due to age restrictions.
         </p>
         <Link href="/">
-          <Button className="bg-purple-700 hover:bg-purple-800 text-white">
+          <Button className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
             Return to Homepage
           </Button>
         </Link>

@@ -13,9 +13,9 @@ export default function CTA() {
           assistant can help you connect with us.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link href="/chatbot">
+          <Link href="/healing-rooms">
             <Button className="bg-white text-purple-700 hover:bg-gray-100 px-8 py-3 rounded-md text-lg">
-              Meet Zoe
+              Healing Rooms
             </Button>
           </Link>
           <Link href="https://www.thinkround.org/donate">

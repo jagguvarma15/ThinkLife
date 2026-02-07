@@ -21,9 +21,9 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/chatbot">
+              <Link href="/healing-rooms">
                 <Button className="bg-purple-700 hover:bg-purple-800 text-white px-8 py-3 rounded-md">
-                  Meet Zoe
+                  Healing Rooms
                 </Button>
               </Link>
             </div>
