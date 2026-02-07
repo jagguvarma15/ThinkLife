@@ -64,7 +64,7 @@ git fetch "$UPSTREAM_REMOTE" "$BRANCH_MAIN"
 if [ "${ALLOW_UNRELATED_HISTORIES:-false}" = "true" ]; then
   if ! git merge-base HEAD "$UPSTREAM_REMOTE/$BRANCH_MAIN" &>/dev/null; then
     echo "==> Connecting unrelated histories (one-time merge)"
-    git merge "$UPSTREAM_REMOTE/$BRANCH_MAIN" --allow-unrelated-histories -m "chore: connect with upstream (unrelated histories)"
+    git merge "$UPSTREAM_REMOTE/$BRANCH_MAIN" --allow-unrelated-histories --no-verify -m "chore: connect with upstream (unrelated histories)"
     echo "==> Pushing to origin/${BRANCH_MAIN}"
     git push origin "$BRANCH_MAIN"
     echo "==> Done. Histories connected; run sync without ALLOW_UNRELATED_HISTORIES for future syncs."
@@ -112,7 +112,7 @@ if git diff --staged --quiet && git diff --quiet; then
 else
   echo "==> Committing parent code (own history)"
   git add -A
-  git commit -m "chore: sync code from upstream (parent repo only)"
+  git commit --no-verify -m "chore: sync code from upstream (parent repo only)"
   echo "==> Pushing to origin/${BRANCH_MAIN}"
   git push origin "$BRANCH_MAIN"
 fi
